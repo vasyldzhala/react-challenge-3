@@ -5,6 +5,7 @@ const Table = (props) => {
   const header = props.dataStructure
     .map(item => <th key={item.key}>{item.title}</th>);
 
+  console.log(props.data);
   const body = props.data
     .map(item => {
       const row = props.dataStructure
@@ -14,7 +15,7 @@ const Table = (props) => {
         <tr key={item.imdbID}>
 
           <td>
-            <input type="checkbox" defaultChecked={false} name={item.Title}/>
+            <input type="checkbox" defaultChecked={false} name={item.Title} />
           </td>
 
           {row}

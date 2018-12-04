@@ -11,9 +11,6 @@ class App extends Component {
   constructor() {
     super();
     this.data = [];
-    this.state = {
-      isDataLoaded: false
-    };
 
     this.dataStructure = dataStructure;
     this.cast = cast;
@@ -64,6 +61,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.options);
     return (
       <div>
         <DataComparison
@@ -78,7 +76,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  rowData: state.fetchReducer.data
+  rowData: state.remoteDataReducer.data
 });
 
 const mapDispatchToProps = dispatch => ({
