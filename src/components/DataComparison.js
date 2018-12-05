@@ -19,7 +19,7 @@ class DataComparison extends Component {
     this.optionsToShow = ({...nextProps.options});
     this.optionsToShow.series = this.optionsToShow.series
       .slice()
-      .filter(s => dataToDisplay.find(i => (i.name === s.name)).show);
+      .filter(serie => dataToDisplay.find(item => (item.name === serie.name)).show);
   };
 
   onClickHandler({target}) {
@@ -49,7 +49,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleDisplayData: (toggled) => dispatch(toggleDisplayData(toggled))
+  toggleDisplayData: toggled => dispatch(toggleDisplayData(toggled))
 });
 
 const wrappedDataComparison = hocLoader('data')(DataComparison);

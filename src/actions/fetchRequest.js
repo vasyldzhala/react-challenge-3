@@ -1,4 +1,4 @@
-const fetchRequest = urlArr => (dispatch, foo) => {
+const fetchRequest = urlArr => dispatch => {
   const requests = urlArr.map( url => fetch(url));
 
   return Promise.all(requests)

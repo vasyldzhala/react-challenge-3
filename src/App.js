@@ -15,10 +15,8 @@ class App extends Component {
     this.dataStructure = dataStructure;
     this.cast = cast;
     this.defaultOptions = defaultOptions;
-
+    this.baseUrl = 'http://www.omdbapi.com/?apikey=147c5a62';
   }
-
-  baseUrl = 'http://www.omdbapi.com/?apikey=147c5a62';
 
   getUrls = (baseUrl, cast) => {
     return cast.map(item => `${baseUrl}&t=${item.Title}&y=${item.Year}`);
@@ -31,9 +29,10 @@ class App extends Component {
   };
 
   setOptions = () => {
-    const getCategoriesValue = (value) => this.dataStructure
+    const getCategoriesValue = value => this.dataStructure
       .slice()
-      .filter(item => item.compare).map(item => item[value]);
+      .filter(item => item.compare)
+      .map(item => item[value]);
 
     this.options = {
       xAxis: {
@@ -43,7 +42,8 @@ class App extends Component {
         const ratioArr = getCategoriesValue('ratio');
         return {
           name: item.Title,
-          data: getCategoriesValue('name').map((cat, idx) => parseFloat(item[cat]) * ratioArr[idx])
+          data: getCategoriesValue('name')
+            .map((cat, idx) => parseFloat(item[cat]) * ratioArr[idx])
         };
       })
     };
@@ -61,7 +61,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.options);
     return (
       <div>
         <DataComparison
@@ -80,7 +79,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchRequest: (urlArr) => dispatch(fetchRequest(urlArr))
+  fetchRequest: urlArr => dispatch(fetchRequest(urlArr))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

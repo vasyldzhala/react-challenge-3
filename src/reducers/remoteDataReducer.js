@@ -13,13 +13,10 @@ export default (state = remoteDataState, action) => {
       };
     case 'TOGGLE_DISPLAY':
       const toggledItem = action.payload;
-      console.log(toggledItem);
-      const neww = state.dataToDisplay
-        .map(item => (item.name === toggledItem.name) ? toggledItem : ({...item}));
-      console.log(neww);
       return {
         ...state,
-        dataToDisplay: neww
+        dataToDisplay: state.dataToDisplay
+          .map(item => (item.name === toggledItem.name) ? toggledItem : ({...item}))
       };
     default:
       return state;
